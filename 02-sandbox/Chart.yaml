@@ -1,0 +1,7 @@
+apiVersion: v2
+name: sandbox
+description: Sandbox para estudar templates Helm (funcoes e condicionais)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+

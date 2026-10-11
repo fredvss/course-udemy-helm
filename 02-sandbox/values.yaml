@@ -1,0 +1,15 @@
+app:
+  name: "Minha App"
+  env: dev # dev | prod
+  owner: "Time Plataforma"
+
+image:
+  repository: nginx
+  tag: "1.27.0"
+
+service:
+  port: 80
+
+features:
+  enableCanary: false
+

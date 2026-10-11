@@ -1,0 +1,31 @@
+{{- $appName := .Values.app.name | lower | replace " " "-" -}}
+{{- $env := .Values.app.env | default "dev" | lower -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ printf "%s-%s" .Release.Name $appName | trunc 63 | trimSuffix "-" }}
+  labels:
+    app.kubernetes.io/name: {{ $appName | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+data:
+  APP_NAME: {{ .Values.app.name | quote }}
+  APP_OWNER: {{ .Values.app.owner | default "time-desconhecido" | quote }}
+  ENVIRONMENT: {{ $env | quote }}
+  IMAGE: {{ printf "%s:%s" .Values.image.repository (.Values.image.tag | default .Chart.AppVersion) | quote }}
+  SERVICE_PORT: {{ .Values.service.port | quote }}
+
+  {{- if eq $env "prod" }}
+  LOG_LEVEL: "warn"
+  REPLICA_HINT: "3"
+  {{- else }}
+  LOG_LEVEL: "debug"
+  REPLICA_HINT: "1"
+  {{- end }}
+
+  {{- if .Values.features.enableCanary }}
+  CANARY_ENABLED: "true"
+  {{- else }}
+  CANARY_ENABLED: "false"
+  {{- end }}
+

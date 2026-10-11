@@ -1,0 +1,19 @@
+# Ignore common VCS and editor files
+.git/
+.github/
+.gitignore
+
+# Ignore IDE/OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Ignore backups and temp files
+*.swp
+*.tmp
+*.bak
+*~
+
+# Ignore local chart artifacts
+*.tgz
+charts/
