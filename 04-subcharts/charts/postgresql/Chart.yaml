@@ -1,0 +1,5 @@
+apiVersion: v2
+name: postgresql
+description: Subchart de exemplo para banco de dados
+version: 0.1.0
+appVersion: "15.0.0"

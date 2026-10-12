@@ -1,0 +1,9 @@
+auth:
+  username: appdb
+  database: appdb
+  password: changeme
+
+primary:
+  persistence:
+    enabled: true
+    size: 8Gi

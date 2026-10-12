@@ -1,0 +1,15 @@
+app:
+  name: demo-app
+  image:
+    repository: nginx
+    tag: "1.27.0"
+    pullPolicy: IfNotPresent
+
+migration:
+  enabled: true
+  image: busybox
+  tag: "1.36"
+  command:
+    - sh
+    - -c
+    - echo "executando migracao" && sleep 1

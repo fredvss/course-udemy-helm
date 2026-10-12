@@ -1,0 +1,27 @@
+app:
+  name: my-app
+  replicaCount: 1
+  image:
+    repository: nginx
+    tag: "1.27.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+  html: |
+    <html>
+      <body>
+        <h1>Helm + Nginx</h1>
+        <p>App web customizada via ConfigMap.</p>
+        <p>Banco em ambiente local.</p>
+      </body>
+    </html>
+
+postgresql:
+  enabled: true
+  auth:
+    username: appdb
+    database: appdb
+    password: changeme
